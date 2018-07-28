@@ -1,12 +1,14 @@
 // Enemies our player must avoid
-const Enemy = function(x,y,speed) {
-    // Variables applied to each of our instances go here
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+var Enemy = function(x, y, speed) {
+    // Variables applied to each of our instances go here,
+    // we've provided one for you to get started
     this.x = x;
     this.y = y;
     this.speed = speed;
-    this.sprite = "images/enemy-bug.png";
+
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
@@ -16,11 +18,43 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
+
+    // When enemy is beyond canvas width, it goes back to the left side
     if (this.x > 510) {
         this.x = -100;
         this.speed = 80 + Math.floor(Math.random() * 180);
     }
     checkCollisions(this);
+};
+
+// When collision happens, player goes back to the bottom,
+// and player's life is reduced
+let checkCollisions = function () {
+   for (var i = 0; i < allEnemies.length; i++) {
+     if (player.x < allEnemies[i].x + 68 &&
+        player.x + 38 > allEnemies[i].x &&
+        player.y < allEnemies[i].y + 38 &&
+        30 + player.y > allEnemies[i].y) {
+          resetPlayer();
+          player.lives -=1;
+          if (player.lives === 0) {
+            gameOver();
+          }
+       }
+    }
+};
+//puts back the player to starting block
+function resetPlayer() {
+    player.x = 210;
+    player.y = 380;
+};
+//alert that game is over (will improve this in the future)
+let gameOver = function() {
+    alert("Sorry! Game Over! Please refresh the page to start again.");
+    counter = 0;
+    showPoints.innerHTML = counter;
+    resetPlayer();
+    player.lives = 0;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -29,14 +63,16 @@ Enemy.prototype.render = function() {
 };
 
 // Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
-let Player = function (x,y){
+var Player = function(x, y, speed) {
     this.x = x;
     this.y = y;
-    this.sprite = "images/char-horn-girl.png";
+    this.speed = speed;
+    this.sprite = 'images/char-pink-girl.png';
+    this.lives = 3;
 };
+
+// This class requires an update(), render() and
+// a handleInput() method.
 
 Player.prototype.update = function() {
     // Keep player inside the canvas
@@ -50,6 +86,14 @@ Player.prototype.update = function() {
 
     if (this.x < 0) {
         this.x = 0;
+    }
+
+    // When the water is reached, player goes back to the bottom
+    // and earns 500 points
+    if (this.y < 0) {
+        resetPlayer();
+        counter = counter + 500;
+        showPoints.innerHTML = counter;
     }
 };
 
@@ -74,16 +118,15 @@ Player.prototype.handleInput = function(keyPress) {
      }
 };
 
-Player.prototype.reset = function(){
-    this.x = 200;
-    this.y = 380;
-}
-
+//Show points on the page
+let showPoints = document.getElementById('points');
+let counter = 0;
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var player = new Player(210, 380);
+
+var player = new Player(210, 380, 50);
 
 const enemyA = new Enemy(-100, 227.5, 50);
 const enemyB = new Enemy(-500, 227.5, 50);
@@ -93,21 +136,6 @@ const enemyE = new Enemy(-200, 61, 50);
 const enemyF = new Enemy(-300, 61, 50);
 let allEnemies = [];
 allEnemies.push(enemyA, enemyB, enemyC, enemyD, enemyE, enemyF);
-
-
-var checkCollisions = function() {
-    for (var i = 0; i < allEnemies.length; i++) {
-        if (player.x < allEnemies[i].x + enemyWidth &&
-            player.x + playerWidth > allEnemies[i].x &&
-            player.y < allEnemies[i].y + enemyHeight &&
-            player.y + playerHeight > allEnemies[i].y
-        ) {
-            player.reset();
-        }
-
-    }
-};
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
