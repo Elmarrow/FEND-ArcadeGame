@@ -1,17 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Caveat|Fredoka+One|Quicksand:400,700");
 body {
-    text-align: center;
-    background-image: url('../images/Arcade.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-h1,
-h2,
-h3 {
-  font-family: monospace;
-  font-size: 1.8em;
+  text-align: center;
+  background-image: url("../images/background.jpg");
+  background-repeat: repeat-x;
+  background-size: cover;
 }
 
 h1 {
-  color: blue;
+  font-family: "Fredoka One", cursive;
+}
+
+h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.05em;
+}
+
+h3 {
+  font-family: "Caveat", sans-serif;
+  font-size: 30px;
+  color: red;
+  padding: 0;
+}
+
+h1 {
+  color: red;
+  font-size: 26px;
+}
+
+.panel {
+  margin: auto;
+  width: 50%;
+}
+
+.panel * {
+  padding: 0;
+  margin: 4px 0 0 0;
+}
+
+.lifebar img {
+  width: 65px;
+  height: 85px;
+  margin: 0;
+  padding: 0;
+}
+
+.hide {
+  visibility: hidden;
 }
