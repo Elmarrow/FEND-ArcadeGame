@@ -12,6 +12,5 @@ The point of the game is survival. You start from the safety of the green area. 
 Device | UP   | DOWN | LEFT | RIGHT
 ----   | ---- | ---- | ---- | ----
 Keyboard | ⬆️ | ⬇️  | ⬅️ | ➡️ |
-Keyboard | w  | s  | a | d 
 
 <br>
