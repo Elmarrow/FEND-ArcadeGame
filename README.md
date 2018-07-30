@@ -18,8 +18,11 @@ Keyboard | ⬆️ | ⬇️  | ⬅️ | ➡️ |
 
 ### Where to play
 First your game should look like this:
-[game screenshot](images/screenshot.JPG)
+![game screenshot](images/screenshot.JPG)
 
 To play the game you should follow the link
-[game GitHub link](https://github.com/Elmarrow/UdacityArcadeGame)
+[on GitHub](https://github.com/Elmarrow/UdacityArcadeGame)
 and clone it or download it. Then open the file index.html on your preffered browser
+
+
+Enjoy the game!!!
