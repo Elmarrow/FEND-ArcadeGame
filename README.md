@@ -18,6 +18,8 @@ Keyboard | ⬆️ | ⬇️  | ⬅️ | ➡️ |
 
 ### Where to play
 First your game should look like this:
+<br>
+
 ![game screenshot](images/screenshot.JPG)
 
 To play the game you should follow the link
